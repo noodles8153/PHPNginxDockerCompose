@@ -1,0 +1,22 @@
+FROM php:7.1-fpm
+
+#RUN apt-get update && apt-get install -y sudo less
+
+# Add addition libs
+RUN docker-php-ext-install \
+    curl \
+    exif \
+    gd \
+    gettext \
+    intl \
+    ldap \
+    mongodb \
+    pdo_dblib \
+    pdo_mysql \
+    pdo_pgsql \
+    xmlrpc \
+    zip
+
+# Cleanup
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
